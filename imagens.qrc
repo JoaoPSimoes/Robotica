@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>limpeza.jpeg</file>
+        <file>tbebida.jpeg</file>
+        <file>cuba.jpg</file>
+        <file>gin.jpg</file>
+        <file>gin_bottle.jpg</file>
+        <file>Home-512.png</file>
+        <file>kuka.jpg</file>
+        <file>lixo.jpeg</file>
+        <file>ok.png</file>
+        <file>redbull.jpg</file>
+        <file>tonic.jpg</file>
+        <file>wisckey.jpg</file>
+        <file>bebida.jpg</file>
+        <file>BEBIDAS.jpg</file>
+        <file>bw-absolut-vodka-1.jpg</file>
+        <file>caipirinha.jpg</file>
+        <file>coca_cola.jpg</file>
+        <file>coktail.jpg</file>
+        <file>copo.jpg</file>
+    </qresource>
+</RCC>
