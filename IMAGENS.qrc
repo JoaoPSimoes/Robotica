@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imagens/bebida.jpg</file>
+        <file>imagens/BEBIDAS.jpg</file>
+        <file>imagens/bw-absolut-vodka-1.jpg</file>
+        <file>imagens/caipirinha.jpg</file>
+        <file>imagens/coca_cola.jpg</file>
+        <file>imagens/coktail.jpg</file>
+        <file>imagens/copo.jpg</file>
+        <file>imagens/cuba.jpg</file>
+        <file>imagens/gin.jpg</file>
+        <file>imagens/gin_bottle.jpg</file>
+        <file>imagens/Home-512.png</file>
+        <file>imagens/kuka.jpg</file>
+        <file>imagens/limpeza.jpeg</file>
+        <file>imagens/lixo.jpeg</file>
+        <file>imagens/ok.png</file>
+        <file>imagens/redbull.jpg</file>
+        <file>imagens/tbebida.jpeg</file>
+        <file>imagens/tonic.jpg</file>
+        <file>imagens/wisckey.jpg</file>
+        <file>imagens/camera_off.png</file>
+        <file>imagens/camera_on.png</file>
+    </qresource>
+</RCC>

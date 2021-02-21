@@ -6,28 +6,28 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1358</width>
-    <height>720</height>
+    <width>1307</width>
+    <height>699</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0,0);</string>
+   <string notr="true">background-color: rgb(0,0,0);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>20</y>
-      <width>391</width>
-      <height>71</height>
+      <x>200</x>
+      <y>0</y>
+      <width>511</width>
+      <height>101</height>
      </rect>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt; color:#ffaa00;&quot;&gt;KUKA BARTENDER&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; color:#ffaa00;&quot;&gt;KUKA BARTENDER&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QStackedWidget" name="stackedWidget">
@@ -58,7 +58,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/coktail.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/coktail.jpg);</string>
       </property>
       <property name="text">
        <string/>
@@ -80,7 +80,8 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/tbebida.jpeg);</string>
+       <string notr="true">
+border-image: url(:/imagens/tbebida.jpeg);</string>
       </property>
       <property name="text">
        <string/>
@@ -96,7 +97,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/limpeza.jpeg);</string>
+       <string notr="true">border-image: url(:/imagens/limpeza.jpeg);</string>
       </property>
       <property name="text">
        <string/>
@@ -114,7 +115,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/cuba.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/cuba.jpg);</string>
       </property>
       <property name="text">
        <string/>
@@ -130,7 +131,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/gin.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/gin.jpg);</string>
       </property>
       <property name="text">
        <string/>
@@ -146,7 +147,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/bebida.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/bebida.jpg);</string>
       </property>
       <property name="text">
        <string/>
@@ -162,7 +163,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/caipirinha.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/caipirinha.jpg);</string>
       </property>
       <property name="text">
        <string/>
@@ -240,7 +241,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/ok.png);</string>
+       <string notr="true">border-image: url(:/imagens/ok.png);</string>
       </property>
       <property name="text">
        <string/>
@@ -292,7 +293,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/wisckey.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/wisckey.jpg);</string>
       </property>
       <property name="text">
        <string/>
@@ -308,7 +309,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/lixo.jpeg);</string>
+       <string notr="true">border-image: url(:/imagens/lixo.jpeg);</string>
       </property>
       <property name="text">
        <string/>
@@ -324,7 +325,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/ok.png);</string>
+       <string notr="true">border-image: url(:/imagens/ok.png);</string>
       </property>
       <property name="text">
        <string/>
@@ -353,7 +354,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/coca_cola.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/coca_cola.jpg);</string>
       </property>
       <property name="text">
        <string/>
@@ -369,7 +370,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/gin_bottle.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/gin_bottle.jpg);</string>
       </property>
       <property name="text">
        <string/>
@@ -385,7 +386,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/tonic.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/tonic.jpg);</string>
       </property>
       <property name="text">
        <string/>
@@ -402,7 +403,7 @@
       </property>
       <property name="styleSheet">
        <string notr="true">
-border-image: url(:/bw-absolut-vodka-1.jpg);</string>
+border-image: url(:/imagens/bw-absolut-vodka-1.jpg);</string>
       </property>
       <property name="text">
        <string/>
@@ -418,7 +419,7 @@ border-image: url(:/bw-absolut-vodka-1.jpg);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/redbull.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/redbull.jpg);</string>
       </property>
       <property name="text">
        <string/>
@@ -457,20 +458,21 @@ border-image: url(:/bw-absolut-vodka-1.jpg);</string>
      </widget>
     </widget>
     <widget class="QWidget" name="page_4">
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="video_label">
       <property name="geometry">
        <rect>
-        <x>610</x>
-        <y>30</y>
-        <width>581</width>
-        <height>441</height>
+        <x>590</x>
+        <y>90</y>
+        <width>600</width>
+        <height>600</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(182, 182, 182);</string>
+       <string notr="true">
+background-color: rgb(0, 0, 0);</string>
       </property>
       <property name="text">
-       <string>IMAGEM DA CAMERA</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;                                   IMAGEM DA CAMERA&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_5">
@@ -514,7 +516,23 @@ background-color: rgb(255, 255, 255);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/copo.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/copo.jpg);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="camera_ON">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>340</y>
+        <width>91</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/imagens/camera_off.png);</string>
       </property>
       <property name="text">
        <string/>
@@ -525,14 +543,14 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="button_menu">
     <property name="geometry">
      <rect>
-      <x>1230</x>
-      <y>10</y>
+      <x>1090</x>
+      <y>0</y>
       <width>111</width>
       <height>91</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-image: url(:/Home-512.png);</string>
+     <string notr="true">border-image: url(:/imagens/Home-512.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -544,12 +562,11 @@ background-color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1358</width>
+     <width>1307</width>
      <height>26</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionASD">
    <property name="text">
     <string>ASD</string>

@@ -2,11 +2,19 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
+#include <opencv2/opencv.hpp>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
 
+#include <iostream>
+
+using namespace std;
+
+namespace Ui
+{
+class MainWindow;
+}
+class MyVideoCapture;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -17,8 +25,6 @@ public:
 
 private slots:
     void on_button_bebida_clicked();
-
-    void on_stackedWidget_currentChanged(int arg1);
 
     void on_button_manual_clicked();
 
@@ -33,8 +39,6 @@ private slots:
     void on_vodka_button_clicked();
 
     void on_caipirinha_button_clicked();
-
-    void on_label_bebida_linkActivated(const QString &link);
 
     void on_button_ok_clicked();
 
@@ -54,8 +58,20 @@ private slots:
 
     void on_button_bebida_ok_clicked();
 
+
+    void on_pushButton_11_clicked();
+
+
+    void on_camera_ON_clicked();
+
 private:
     Ui::MainWindow *ui;
+    cv::VideoCapture capture;
+    cv::Mat frame;
     QString Receita;
+    int State;
+    MyVideoCapture *mOpenCV_VideoCapture;
+
+
 };
 #endif // MAINWINDOW_H
