@@ -19,11 +19,14 @@ using namespace cv;
 MainWindow::MainWindow(QWidget *parent):
     QMainWindow(parent),
     ui(new Ui::MainWindow)
+
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
     Receita="";
     State=0;
+    id_bebida=0;
+    n_dose=0;
 
     mOpenCV_VideoCapture=new MyVideoCapture(this);
     connect(mOpenCV_VideoCapture, &MyVideoCapture::newPixmpapCaptured,this,[&]()
@@ -35,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent):
 
 
 
-      /*  const int Timeout = 5 * 1000;
+    /*  const int Timeout = 5 * 1000;
         QTime readtime;
 
         QTcpSocket socketClient;
@@ -173,7 +176,7 @@ void MainWindow::on_button_manual_clicked()
 void MainWindow::on_button_clean_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
- }
+}
 
 void MainWindow::on_button_menu_clicked()
 {
@@ -229,44 +232,82 @@ void MainWindow::on_button_ok_clicked()
 
 void MainWindow::on_button_wisckey_clicked()
 {
-    Receita=Receita+"-Wisckey\n";
-    ui->label_receita->setText(Receita);
-    ui->label_receita->setStyleSheet("color:white");
+    if(id_bebida!=1)
+    {
+        n_dose=1;
+        Receita=Receita+"-Wisckey -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        ui->label_receita->setStyleSheet("color:white");
+        id_bebida=1;
+    }
+
 }
 
 void MainWindow::on_button_gin_clicked()
 {
-    Receita=Receita+"-Gin\n";
-    ui->label_receita->setText(Receita);
-    ui->label_receita->setStyleSheet("color:white");
+    if(id_bebida!=2)
+    {
+        n_dose=1;
+        Receita=Receita+"-Gin - \n";
+        ui->label_receita->setText(Receita);
+        ui->label_receita_2->setText(QString::number(n_dose)+" dose\n");
+        ui->label_receita->setStyleSheet("color:white");
+        ui->label_receita_2->setStyleSheet("color:white");
+        id_bebida=2;
+
+    }
 }
 
 void MainWindow::on_button_vodka_clicked()
 {
-    Receita=Receita+"-Vodka\n";
-    ui->label_receita->setText(Receita);
-    ui->label_receita->setStyleSheet("color:white");
+    if(id_bebida!=3)
+    {
+        n_dose=1;
+        Receita=Receita+"-Vodka -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        ui->label_receita_2->setStyleSheet("color:white");
+        ui->label_receita->setStyleSheet("color:white");
+        id_bebida=3;
+
+    }
 }
 
 void MainWindow::on_button_cola_clicked()
 {
-    Receita=Receita+"-Coca-Cola\n";
-    ui->label_receita->setText(Receita);
-    ui->label_receita->setStyleSheet("color:white");
+    if(id_bebida!=4)
+    {
+        n_dose=1;
+        Receita=Receita+"-Coca-Cola -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        ui->label_receita->setStyleSheet("color:white");
+        id_bebida=4;
+    }
 }
 
 void MainWindow::on_button_tonica_clicked()
 {
-    Receita=Receita+"-Água Tónica\n";
-    ui->label_receita->setText(Receita);
-    ui->label_receita->setStyleSheet("color:white");
+    if(id_bebida!=5)
+    {
+        n_dose=1;
+        Receita=Receita+"-Água Tónica -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        ui->label_receita->setStyleSheet("color:white");
+        id_bebida=5;
+
+    }
 }
 
 void MainWindow::on_button_redbul_clicked()
 {
-    Receita=Receita+"-RedBull\n";
-    ui->label_receita->setText(Receita);
-    ui->label_receita->setStyleSheet("color:white");
+    if(id_bebida!=6)
+    {
+        n_dose=1;
+        Receita=Receita+"-RedBull -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        ui->label_receita->setStyleSheet("color:white");
+        id_bebida=6;
+
+    }
 }
 
 void MainWindow::on_button_limpar_clicked()
@@ -282,10 +323,7 @@ void MainWindow::on_button_bebida_ok_clicked()
     ui->label_bebida_a->setStyleSheet("color:orange");
 }
 
-void MainWindow::on_pushButton_11_clicked()
-{
 
-}
 
 /*
 void MainWindow::on_camera_ON_clicked(bool)
@@ -324,8 +362,87 @@ void MainWindow::on_camera_ON_clicked()
     {
         State=0;
         ui->camera_ON->setStyleSheet("border-image: url(:/imagens/camera_off.png);");
-         mOpenCV_VideoCapture->terminate();
+        mOpenCV_VideoCapture->terminate();
     }
 
+
+}
+
+
+void MainWindow::on_plus_dose_clicked()
+
+{
+    n_dose=n_dose+1;
+    switch (id_bebida)
+
+    {
+    case 1:
+        Receita=Receita+"-Wisckey -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+
+        break;
+    case 2:
+        Receita=Receita+"-Gin -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        break;
+
+    case 3:
+        Receita=Receita+"-Vodka -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        break;
+    case 4:
+        Receita=Receita+"-Coca-Cola -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        break;
+    case 5:
+        Receita=Receita+"-Água Tónica -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        break;
+    case 6:
+        Receita=Receita+"-RedBull -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        break;
+    default:
+        break;
+    }
+
+
+}
+
+void MainWindow::on_menos_dose_clicked()
+{
+    n_dose=n_dose-1;
+    switch (id_bebida)
+
+    {
+    case 1:
+        Receita=Receita+"-Wisckey -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+
+        break;
+    case 2:
+        Receita=Receita+"-Gin -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        break;
+
+    case 3:
+        Receita=Receita+"-Vodka -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        break;
+    case 4:
+        Receita=Receita+"-Coca-Cola -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        break;
+    case 5:
+        Receita=Receita+"-Água Tónica -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        break;
+    case 6:
+        Receita=Receita+"-RedBull -" + QString::number(n_dose)+" dose\n";
+        ui->label_receita->setText(Receita);
+        break;
+    default:
+        break;
+    }
 
 }

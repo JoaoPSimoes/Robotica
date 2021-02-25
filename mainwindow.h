@@ -59,17 +59,23 @@ private slots:
     void on_button_bebida_ok_clicked();
 
 
-    void on_pushButton_11_clicked();
 
 
     void on_camera_ON_clicked();
+
+    void on_plus_dose_clicked();
+
+    void on_menos_dose_clicked();
 
 private:
     Ui::MainWindow *ui;
     cv::VideoCapture capture;
     cv::Mat frame;
     QString Receita;
+
     int State;
+    int id_bebida;
+    int n_dose;
     MyVideoCapture *mOpenCV_VideoCapture;
 
 
