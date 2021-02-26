@@ -21,5 +21,9 @@
         <file>imagens/wisckey.jpg</file>
         <file>imagens/camera_off.png</file>
         <file>imagens/camera_on.png</file>
+        <file>imagens/copo2.jpg</file>
+        <file>imagens/cerveja.png</file>
+        <file>imagens/groselha.png</file>
+        <file>imagens/sevenup.png</file>
     </qresource>
 </RCC>
