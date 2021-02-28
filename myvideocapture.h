@@ -17,10 +17,6 @@ public:
     {
         return mPixmap;
     }
-    cv::Mat frame()const
-    {
-        return mFrame;
-    }
 protected:
     void run() override;
 signals:

@@ -2,7 +2,7 @@
 #include <qdebug.h>
 
 MyVideoCapture::MyVideoCapture(QObject *parent)
-    :QThread {parent},mVideoCap{"http://192.168.1.170:8080/video"}
+    :QThread {parent},mVideoCap{"http://192.168.1.77:8080/video"}
 {
 }
 
