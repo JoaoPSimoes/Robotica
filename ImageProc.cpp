@@ -303,7 +303,7 @@ Mat VCPI_Segmenta_Cor(Mat src, int Lower_h, int Upper_h, int Lower_s, int Upper_
 	//cout << "Parameters H:" << Low_H << ", " << Up_H << ", S: " << Low_S << ", " << Up_S << ", V: " << Low_V << ", " << Up_V << endl;
 
 	Mat im_HSV = Mat(src.rows, src.cols, CV_8UC3); //HSV image variable
-	cvtColor(src, im_HSV, CV_BGR2HSV);             //convert RGB to HSV
+    cvtColor(src, im_HSV, COLOR_BGR2HSV);         //convert RGB to HSV
 
 	vector<Mat> HSV_Channels;                      //Vector for HSV channels
 	split(im_HSV, HSV_Channels);                   //Split the HSV Image
