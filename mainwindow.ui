@@ -196,6 +196,9 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
         <pointsize>12</pointsize>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color:&quot;white&quot;</string>
+      </property>
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
@@ -226,6 +229,9 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
        <font>
         <pointsize>12</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:&quot;white&quot;</string>
       </property>
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -260,6 +266,9 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
        <font>
         <pointsize>12</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:&quot;orange&quot;</string>
       </property>
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -344,7 +353,7 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
       <property name="geometry">
        <rect>
         <x>1090</x>
-        <y>480</y>
+        <y>400</y>
         <width>101</width>
         <height>91</height>
        </rect>
@@ -360,7 +369,7 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
       <property name="geometry">
        <rect>
         <x>1270</x>
-        <y>480</y>
+        <y>400</y>
         <width>91</width>
         <height>91</height>
        </rect>
@@ -387,7 +396,7 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
+       <string notr="true">color:&quot;white&quot;</string>
       </property>
       <property name="lineWidth">
        <number>1</number>
@@ -531,22 +540,30 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_bebida_a">
+     <widget class="QLabel" name="erro_mixing">
       <property name="geometry">
        <rect>
         <x>1090</x>
-        <y>410</y>
-        <width>271</width>
-        <height>31</height>
+        <y>510</y>
+        <width>301</width>
+        <height>71</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color:&quot;orange&quot;</string>
+      </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string/>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
       </property>
      </widget>
      <widget class="QPushButton" name="button_groselha">
@@ -644,7 +661,7 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
      <widget class="QLabel" name="video_label">
       <property name="geometry">
        <rect>
-        <x>590</x>
+        <x>440</x>
         <y>90</y>
         <width>600</width>
         <height>600</height>
@@ -661,40 +678,33 @@ background-color: rgb(0, 0, 0);</string>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>140</y>
-        <width>191</width>
-        <height>51</height>
+        <x>50</x>
+        <y>90</y>
+        <width>311</width>
+        <height>101</height>
        </rect>
       </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffaa00;&quot;&gt;Copos Identificados&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>150</y>
-        <width>71</width>
-        <height>31</height>
-       </rect>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">
-
-background-color: rgb(255, 255, 255);</string>
+       <string notr="true">color:&quot;orange&quot;</string>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>Copos Identificados</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
       </property>
      </widget>
      <widget class="QPushButton" name="lavar_copo">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>340</y>
-        <width>121</width>
+        <x>140</x>
+        <y>470</y>
+        <width>111</width>
         <height>111</height>
        </rect>
       </property>
@@ -708,9 +718,9 @@ background-color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="camera_ON">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>340</y>
-        <width>91</width>
+        <x>140</x>
+        <y>220</y>
+        <width>111</width>
         <height>101</height>
        </rect>
       </property>
@@ -724,10 +734,10 @@ background-color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="take_snapshot">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>610</y>
-        <width>91</width>
-        <height>101</height>
+        <x>140</x>
+        <y>340</y>
+        <width>111</width>
+        <height>111</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -735,6 +745,47 @@ background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="snapshot">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>90</y>
+        <width>600</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+background-color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;                                   IMAGEM DA CAMERA&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="msg_arrumar">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>600</y>
+        <width>311</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:&quot;orange&quot;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
       </property>
      </widget>
     </widget>

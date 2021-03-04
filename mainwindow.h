@@ -3,6 +3,8 @@
 
 #define MAX_DOSES_BEBIDA 3
 
+#define TIMEOUT_COMMS 4000
+
 #include <QMainWindow>
 #include <QTimer>
 #include <QTcpSocket>

@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <QTcpSocket>
 #include <QTime>
+#include <QApplication>
 #include "myvideocapture.h"
 #include "ImageProc.h"
 
@@ -39,20 +40,6 @@ MainWindow::MainWindow(QWidget *parent):
     {
         ui->video_label->setPixmap(mOpenCV_VideoCapture->pixmap().scaled(500,500));
     });
-
-      const int Timeout = 5 * 1000;
-        QTime readtime;
-
-        QTcpSocket socketClient;
-        socketClient.connectToHost("192.168.40.128", 7000);
-        readtime.start();
-
-
-        if (!socketClient.waitForConnected(Timeout)) {
-            qDebug() << "Timeout connection!";
-
-        }
-
 
 }
 QByteArray formatMsg(QByteArray msg, unsigned short idMsg){
@@ -185,11 +172,11 @@ void MainWindow::on_button_menu_clicked()
     ui->stackedWidget->setCurrentIndex(0);
     ui->label_Ingredientes->setText("");
     ui->label_bebida->setText("");
-    ui->label_bebida_a->setText("");
+    ui->erro_mixing->setText("");
+    ui->msg_arrumar->setText("");
     ui->label_preparar->setText("");
     Receita="";
     ui->label_receita->setText(Receita);
-    ui->label_receita->setStyleSheet("color:white");
     Num_Doses_7UP = 0;
     Num_Doses_Cerveja = 0;
     Num_Doses_Groselha = 0;
@@ -199,42 +186,33 @@ void MainWindow::on_cuba_button_clicked()
 {
     id_bebida = 1;
     ui->label_bebida->setText("Cuba Livre");
-    ui->label_bebida->setStyleSheet("color:white");
     ui->label_Ingredientes->setText("-Whisky\n-Coca-Cola\n-Gelo\n-Limão");
-    ui->label_Ingredientes->setStyleSheet("color:white");
 }
 
 void MainWindow::on_gin_button_clicked()
 {
     id_bebida = 2;
     ui->label_bebida->setText("Gin Tónico");
-    ui->label_bebida->setStyleSheet("color:white");
     ui->label_Ingredientes->setText("-Gin\n-Água Tónica\n-Gelo\n-Limão");
-    ui->label_Ingredientes->setStyleSheet("color:white");
 }
 
 void MainWindow::on_vodka_button_clicked()
 {
     id_bebida = 3;
     ui->label_bebida->setText("Vodka Laranja");
-    ui->label_bebida->setStyleSheet("color:white");
     ui->label_Ingredientes->setText("-Vodka\n-Sumo de Laranja\n-Gelo");
-    ui->label_Ingredientes->setStyleSheet("color:white");
 }
 
 void MainWindow::on_caipirinha_button_clicked()
 {
     id_bebida = 4;
     ui->label_bebida->setText("Caipirinha");
-    ui->label_bebida->setStyleSheet("color:white");
     ui->label_Ingredientes->setText("-Cachaça\n-Gelo\n-Lima");
-    ui->label_Ingredientes->setStyleSheet("color:white");
 }
 
 void MainWindow::on_button_ok_clicked()
 {
     ui->label_preparar->setText("A preparar bebida...");
-    ui->label_preparar->setStyleSheet("color:orange");
     switch (id_bebida) {
     case 0:
         //não fazer nada
@@ -293,6 +271,7 @@ void MainWindow::on_button_redbul_clicked()
 void MainWindow::on_button_limpar_clicked()
 {
     Receita="";
+    ui->erro_mixing->setText("");
     ui->label_receita->setText(Receita);
     Num_Doses_7UP = 0;
     Num_Doses_Cerveja = 0;
@@ -301,45 +280,49 @@ void MainWindow::on_button_limpar_clicked()
 
 void MainWindow::on_button_bebida_ok_clicked()
 {
-    ui->label_bebida_a->setText("A preparar bebida...");
-    ui->label_bebida_a->setStyleSheet("color:orange");
-
-    //enviar mensagem ao kuka
-    //socketClient.write(formatMsg("NUM",QString::number(Num_Doses_Groselha),43981));
-    //enviar mensagem ao kuka
-    //socketClient.write(formatMsg("NUM",QString::number(Num_Doses_7up),43981));
-    //enviar mensagem ao kuka
-    //socketClient.write(formatMsg("NUM",QString::number(Num_Doses_cerveja),43981));
-
-    //enviar mensagem ao kuka
-    //socketClient.write(formatMsg("FLAG","TRUE",43981));
-
-}
-
-
-
-/*
-void MainWindow::on_camera_ON_clicked(bool)
-{
-
-
-    if (State==0)
-    {
-        mCamera->start();
-        State=1;
-        cout<<"Chegou";
-        ui->camera_ON->setStyleSheet("border-image: url(:/imagens/camera_on.png);");
-    }else if(State==1){
-        State=0;
-        mCamera->stop();
-        ui->camera_ON->setStyleSheet("border-image: url(:/imagens/camera_off.png);");
+    if(Num_Doses_Groselha==0 && Num_Doses_7UP==0 && Num_Doses_Cerveja==0){
+        ui->erro_mixing->setText("Por favor escolha as dosagens");
+        return;
     }
+    ui->erro_mixing->setText("A preparar bebida...");
+    qApp->processEvents();
 
+    QTcpSocket socketClient;
+    socketClient.connectToHost("192.168.10.254", 7000);
+    if (!socketClient.waitForConnected(TIMEOUT_COMMS)) {
+        ui->erro_mixing->setText("Ocorreu uma falha de conexão.\nTente de novo por favor...");
+        cout<<"Erro na conexao"<<endl;
+        return;}
+
+
+    socketClient.write(formatMsg("NUM_PORTIONS_1",QByteArray::number(Num_Doses_Groselha),43981));
+    if(!socketClient.waitForBytesWritten(TIMEOUT_COMMS)) {
+        ui->erro_mixing->setText("Ocorreu uma falha de comunicação.\nTente de novo por favor...");
+        cout<<"Erro no envio"<<endl;
+        return;}
+
+    socketClient.write(formatMsg("NUM_PORTIONS_2",QByteArray::number(Num_Doses_7UP),43981));
+    if(!socketClient.waitForBytesWritten(TIMEOUT_COMMS)) {
+        ui->erro_mixing->setText("Ocorreu uma falha de comunicação.\nTente de novo por favor...");
+        cout<<"Erro no envio"<<endl;
+        return;}
+
+    socketClient.write(formatMsg("NUM_PORTIONS_3",QByteArray::number(Num_Doses_Cerveja),43981));
+    if(!socketClient.waitForBytesWritten(TIMEOUT_COMMS)) {
+        ui->erro_mixing->setText("Ocorreu uma falha de comunicação.\nTente de novo por favor...");
+        cout<<"Erro no envio"<<endl;
+        return;}
+
+    socketClient.write(formatMsg("Flag_Tirar_Bebida","TRUE",43981));
+    if(!socketClient.waitForBytesWritten(TIMEOUT_COMMS)) {
+        ui->erro_mixing->setText("Ocorreu uma falha de comunicação.\nTente de novo por favor...");
+        cout<<"Erro no envio"<<endl;
+        return;}
+
+    socketClient.disconnectFromHost();
+    ui->erro_mixing->setText("Sucesso!");
 
 }
-*/
-
-
 
 void MainWindow::on_camera_ON_clicked()
 {
@@ -378,7 +361,7 @@ void MainWindow::on_take_snapshot_clicked()
     int v_lower_copo = 20;
 
     //Mat captured = mOpenCV_VideoCapture->frame();
-    Mat captured = imread(":/imagens/copo2.jpg");
+    Mat captured = imread("D:/copo2.jpg");
     mOpenCV_VideoCapture->terminate();
     mOpenCV_VideoCapture->wait();
     Mat blur;
@@ -401,15 +384,15 @@ void MainWindow::on_take_snapshot_clicked()
 
     uint max_labels = 0;
 
-            for (uint i = 0; i < labels.cols * labels.rows; i++) {
+            for (int i = 0; i < labels.cols * labels.rows; i++) {
                 max_labels = labels.data[i] > max_labels ? labels.data[i] : max_labels;
             }
 
             coordenadas cent_copo = vcpi_blob_centroid(find_replace_value(labels, 1, 255));
             //cout << "Img size pixels X: " << direito.cols << "  Y: " << direito.rows<<endl;
             //cout << "Pixel pos copo X: " << cent_copo.x << "    Y: " << cent_copo.y << "  Area: "<< cent_copo.area <<endl;
-            uint pos_copo_y =(uint) round((500.0f / (float)direito.rows)*cent_copo.y);
-            uint pos_copo_x =(uint) round((430.0f / (float)direito.cols)*cent_copo.x);
+            float pos_copo_y =(float) (500.0f / (float)direito.rows)*cent_copo.y;
+            float pos_copo_x =(float) (430.0f / (float)direito.cols)*cent_copo.x;
             cout << "Millimetros copo X: " << pos_copo_x << "  Y: " << pos_copo_y << endl;
 
             coordenadas_copo_x = pos_copo_x;
@@ -419,22 +402,61 @@ void MainWindow::on_take_snapshot_clicked()
             QImage image( out.data,out.cols, out.rows,static_cast<int>(out.step),QImage::Format_BGR888 );
 
 
-            ui->video_label->setPixmap(QPixmap::fromImage(image));
+            ui->snapshot->setPixmap(QPixmap::fromImage(image));
+            QString text = "Copos Identificados: ";
+            text.append(QString::number(1));
+            text.append("\nCoordenadas:\n\tX:");
+            text.append(QString::number(pos_copo_x,'f',3));
+            text.append("\n\tY:");
+            text.append(QString::number(pos_copo_y,'f',3));
+            ui->label_5->setText(text);
 
 }
 
 void MainWindow::on_lavar_copo_clicked()
-{   QByteArray msg = "{ X ";
-    QByteArray x = QByteArray::number(coordenadas_copo_x);
-    QByteArray y = QByteArray::number(coordenadas_copo_y);
+{
+    if(coordenadas_copo_x==0 && coordenadas_copo_y==0){
+        ui->msg_arrumar->setText("Por favor execute a análise visual");
+        return;
+    }
+
+
+    QByteArray msg = "{ X ";
+    QByteArray x = QByteArray::number(coordenadas_copo_x,'f',3);
+    QByteArray y = QByteArray::number(coordenadas_copo_y,'f',3);
     msg.append(x);
     msg.append(", Y ");
     msg.append(y);
-    msg.append(", Z 0, A 0, B 0, C 0}");
-    //enviar mensagem ao kuka
-    //socketClient.write(formatMsg("FLAG","TRUE",43981));
-    //enviar mensagem ao kuka
-    //socketClient.write(formatMsg("POS",msg,43981));
+    msg.append(", Z 0.0, A 0.0, B 0.0, C 0.0}");
+
+    ui->msg_arrumar->setText("A arrumar copo...");
+    qApp->processEvents();
+
+    cout<<"Coordenadas enviadas ao KUKA"<<endl;
+    cout<<msg.toStdString()<<endl;
+
+    QTcpSocket socketClient;
+    socketClient.connectToHost("192.168.10.254", 7000);
+    if (!socketClient.waitForConnected(TIMEOUT_COMMS)) {
+        ui->msg_arrumar->setText("Ocorreu uma falha de conexão.\nTente de novo por favor...");
+        cout<<"Erro na conexao"<<endl;
+        return;}
+
+    socketClient.write(formatMsg("sistema_visao",msg,43981));
+    if(!socketClient.waitForBytesWritten(TIMEOUT_COMMS)) {
+        ui->msg_arrumar->setText("Ocorreu uma falha de comunicação.\nTente de novo por favor...");
+        cout<<"Erro no envio"<<endl;
+        return;}
+
+    socketClient.write(formatMsg("Flag_Arrumar_Copo","TRUE",43981));
+    if(!socketClient.waitForBytesWritten(TIMEOUT_COMMS)) {
+        ui->msg_arrumar->setText("Ocorreu uma falha de comunicação.\nTente de novo por favor...");
+        cout<<"Erro no envio"<<endl;
+        return;}
+
+    socketClient.disconnectFromHost();
+    ui->msg_arrumar->setText("Sucesso");
+
 }
 
 void MainWindow::on_button_sevenup_clicked()
@@ -462,4 +484,5 @@ void MainWindow::on_button_groselha_clicked()
         Receita=Receita+"+1 dose   Groselha \n";
         ui->label_receita->setText(Receita);
     }
+
 }
