@@ -33,8 +33,8 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>200</y>
+      <x>120</x>
+      <y>150</y>
       <width>1761</width>
       <height>721</height>
      </rect>
@@ -45,7 +45,7 @@
 </string>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="button_bebida">
@@ -73,7 +73,7 @@
      <widget class="QPushButton" name="button_manual">
       <property name="geometry">
        <rect>
-        <x>470</x>
+        <x>560</x>
         <y>10</y>
         <width>461</width>
         <height>631</height>
@@ -90,7 +90,7 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
      <widget class="QPushButton" name="button_clean">
       <property name="geometry">
        <rect>
-        <x>1000</x>
+        <x>1210</x>
         <y>10</y>
         <width>461</width>
         <height>631</height>
@@ -172,21 +172,21 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>820</x>
-        <y>100</y>
+        <x>1110</x>
+        <y>110</y>
         <width>81</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffaa00;&quot;&gt;Bebida:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; color:#ffaa00;&quot;&gt;Bebida:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_bebida">
       <property name="geometry">
        <rect>
-        <x>900</x>
-        <y>100</y>
+        <x>1200</x>
+        <y>110</y>
         <width>151</width>
         <height>31</height>
        </rect>
@@ -197,29 +197,29 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
        </font>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
-        <x>830</x>
+        <x>1120</x>
         <y>170</y>
         <width>141</width>
         <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffaa00;&quot;&gt;Ingredientes:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; color:#ffaa00;&quot;&gt;Ingredientes:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_Ingredientes">
       <property name="geometry">
        <rect>
-        <x>820</x>
-        <y>220</y>
-        <width>171</width>
-        <height>141</height>
+        <x>1120</x>
+        <y>210</y>
+        <width>241</width>
+        <height>171</height>
        </rect>
       </property>
       <property name="font">
@@ -228,13 +228,13 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
        </font>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QPushButton" name="button_ok">
       <property name="geometry">
        <rect>
-        <x>1180</x>
+        <x>1280</x>
         <y>480</y>
         <width>81</width>
         <height>81</height>
@@ -250,9 +250,9 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
      <widget class="QLabel" name="label_preparar">
       <property name="geometry">
        <rect>
-        <x>810</x>
-        <y>440</y>
-        <width>241</width>
+        <x>1120</x>
+        <y>410</y>
+        <width>251</width>
         <height>31</height>
        </rect>
       </property>
@@ -262,7 +262,28 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
        </font>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>10</y>
+        <width>301</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; color:#ffaa00;&quot;&gt;Escolhe a tua bebida&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </widget>
@@ -276,36 +297,56 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
         <height>61</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(0, 0, 0);</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; color:#ffaa00;&quot;&gt;Faz a tua bebida&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; color:#ffaa00;&quot;&gt;Faz a tua bebida&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QPushButton" name="button_wisckey">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>80</x>
         <y>100</y>
         <width>151</width>
         <height>181</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>120</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+        <strikeout>false</strikeout>
+        <kerning>true</kerning>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">border-image: url(:/imagens/wisckey.jpg);</string>
       </property>
       <property name="text">
-       <string/>
+       <string>X</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="button_limpar">
       <property name="geometry">
        <rect>
-        <x>1100</x>
-        <y>360</y>
-        <width>111</width>
-        <height>141</height>
+        <x>1090</x>
+        <y>480</y>
+        <width>101</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -318,8 +359,8 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
      <widget class="QPushButton" name="button_bebida_ok">
       <property name="geometry">
        <rect>
-        <x>1230</x>
-        <y>390</y>
+        <x>1270</x>
+        <y>480</y>
         <width>91</width>
         <height>91</height>
        </rect>
@@ -334,33 +375,34 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
      <widget class="QLabel" name="label_receita">
       <property name="geometry">
        <rect>
-        <x>1110</x>
-        <y>160</y>
-        <width>111</width>
-        <height>151</height>
+        <x>1090</x>
+        <y>150</y>
+        <width>271</width>
+        <height>231</height>
        </rect>
       </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lista de ingredientes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="button_cola">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>300</y>
-        <width>151</width>
-        <height>181</height>
-       </rect>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/imagens/coca_cola.jpg);</string>
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
       </property>
       <property name="text">
        <string/>
       </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
      </widget>
      <widget class="QPushButton" name="button_gin">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -368,15 +410,32 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
         <width>151</width>
         <height>181</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>120</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+        <strikeout>false</strikeout>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::WheelFocus</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
       </property>
       <property name="styleSheet">
        <string notr="true">border-image: url(:/imagens/gin_bottle.jpg);</string>
       </property>
       <property name="text">
-       <string/>
+       <string>X</string>
       </property>
      </widget>
      <widget class="QPushButton" name="button_tonica">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -385,65 +444,99 @@ border-image: url(:/imagens/tbebida.jpeg);</string>
         <height>181</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>120</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">border-image: url(:/imagens/tonic.jpg);</string>
       </property>
       <property name="text">
-       <string/>
+       <string>X</string>
       </property>
      </widget>
      <widget class="QPushButton" name="button_vodka">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>100</y>
+        <x>420</x>
+        <y>500</y>
         <width>151</width>
         <height>181</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>120</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">
-border-image: url(:/imagens/bw-absolut-vodka-1.jpg);</string>
+       <string notr="true">border-image: url(:/imagens/bw-absolut-vodka-1.jpg);</string>
       </property>
       <property name="text">
-       <string/>
+       <string>X</string>
       </property>
      </widget>
      <widget class="QPushButton" name="button_redbul">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>430</x>
+        <x>420</x>
         <y>300</y>
         <width>151</width>
         <height>181</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>120</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">border-image: url(:/imagens/redbull.jpg);</string>
       </property>
       <property name="text">
-       <string/>
+       <string>X</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>1110</x>
-        <y>110</y>
-        <width>251</width>
+        <x>1070</x>
+        <y>100</y>
+        <width>331</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffaa00;&quot;&gt;Ingredientes Selecionados:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; color:#ffaa00;&quot;&gt;Ingredientes Selecionados:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="label_bebida_a">
       <property name="geometry">
        <rect>
-        <x>1110</x>
-        <y>320</y>
-        <width>251</width>
+        <x>1090</x>
+        <y>410</y>
+        <width>271</width>
         <height>31</height>
        </rect>
       </property>
@@ -456,64 +549,96 @@ border-image: url(:/imagens/bw-absolut-vodka-1.jpg);</string>
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="plus_dose">
+     <widget class="QPushButton" name="button_groselha">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>170</y>
-        <width>91</width>
-        <height>91</height>
+        <x>80</x>
+        <y>300</y>
+        <width>151</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>151</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>151</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/imagens/groselha.png);
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_cerveja">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>500</y>
+        <width>151</width>
+        <height>181</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(125, 125, 125);
-border-image: url(:/imagens/Home-512.png);</string>
+       <string notr="true">border-image: url(:/imagens/cerveja.png);</string>
       </property>
       <property name="text">
-       <string>+</string>
+       <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="menos_dose">
+     <widget class="QPushButton" name="button_sevenup">
       <property name="geometry">
        <rect>
-        <x>650</x>
-        <y>300</y>
-        <width>91</width>
-        <height>91</height>
+        <x>420</x>
+        <y>100</y>
+        <width>151</width>
+        <height>181</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/imagens/sevenup.png);</string>
+      </property>
       <property name="text">
-       <string>-</string>
+       <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="label_receita_2">
+     <widget class="QPushButton" name="button_cola">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>1230</x>
-        <y>160</y>
-        <width>111</width>
-        <height>151</height>
+        <x>80</x>
+        <y>500</y>
+        <width>151</width>
+        <height>181</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>120</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/imagens/coca_cola.jpg);</string>
+      </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>X</string>
       </property>
      </widget>
-     <zorder>label_2</zorder>
-     <zorder>button_wisckey</zorder>
-     <zorder>button_limpar</zorder>
-     <zorder>button_bebida_ok</zorder>
-     <zorder>label_receita</zorder>
-     <zorder>button_cola</zorder>
-     <zorder>button_gin</zorder>
-     <zorder>button_tonica</zorder>
-     <zorder>button_vodka</zorder>
-     <zorder>button_redbul</zorder>
-     <zorder>label_3</zorder>
-     <zorder>label_bebida_a</zorder>
-     <zorder>menos_dose</zorder>
-     <zorder>plus_dose</zorder>
-     <zorder>label_receita_2</zorder>
     </widget>
     <widget class="QWidget" name="page_4">
      <widget class="QLabel" name="video_label">
@@ -564,7 +689,7 @@ background-color: rgb(255, 255, 255);</string>
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_11">
+     <widget class="QPushButton" name="lavar_copo">
       <property name="geometry">
        <rect>
         <x>80</x>
@@ -596,13 +721,29 @@ background-color: rgb(255, 255, 255);</string>
        <string/>
       </property>
      </widget>
+     <widget class="QPushButton" name="take_snapshot">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>610</y>
+        <width>91</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/imagens/camera_off.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QPushButton" name="button_menu">
     <property name="geometry">
      <rect>
-      <x>1430</x>
-      <y>10</y>
+      <x>1620</x>
+      <y>40</y>
       <width>111</width>
       <height>91</height>
      </rect>
@@ -621,7 +762,7 @@ background-color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>1911</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
