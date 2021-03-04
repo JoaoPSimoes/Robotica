@@ -10,11 +10,13 @@ CONFIG += c++11
 INCLUDEPATH += D:/Opencv_411/opencv/build/include
 LIBS += "D:\\Opencv_411\\opencv\\build\\x64\\vc15\\lib\\opencv_world411.lib"
 SOURCES += \
+    ImageProc.cpp \
     main.cpp \
     mainwindow.cpp \
     myvideocapture.cpp
 
 HEADERS += \
+    ImageProc.h \
     mainwindow.h \
     myvideocapture.h
 
@@ -38,13 +40,6 @@ QMAKE_CXXFLAGS += -std=gnu++14
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-
-
-
-
-
-
 
 
 #win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../opencv/build/x64/vc15/lib/ -lopencv_world430
