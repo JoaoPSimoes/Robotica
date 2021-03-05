@@ -48,18 +48,6 @@ private slots:
 
     void on_button_ok_clicked();
 
-    void on_button_wisckey_clicked();
-
-    void on_button_gin_clicked();
-
-    void on_button_vodka_clicked();
-
-    void on_button_cola_clicked();
-
-    void on_button_tonica_clicked();
-
-    void on_button_redbul_clicked();
-
     void on_button_limpar_clicked();
 
     void on_button_bebida_ok_clicked();
@@ -75,6 +63,10 @@ private slots:
     void on_button_cerveja_clicked();
 
     void on_button_groselha_clicked();
+
+    void on_groselha_button_clicked();
+
+    void on_cerveja_button_clicked();
 
 private:
     Ui::MainWindow *ui;

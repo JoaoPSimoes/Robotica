@@ -6,7 +6,6 @@
         <file>imagens/caipirinha.jpg</file>
         <file>imagens/coca_cola.jpg</file>
         <file>imagens/coktail.jpg</file>
-        <file>imagens/copo.jpg</file>
         <file>imagens/cuba.jpg</file>
         <file>imagens/gin.jpg</file>
         <file>imagens/gin_bottle.jpg</file>
@@ -22,8 +21,12 @@
         <file>imagens/camera_off.png</file>
         <file>imagens/camera_on.png</file>
         <file>imagens/copo2.jpg</file>
-        <file>imagens/cerveja.png</file>
         <file>imagens/groselha.png</file>
         <file>imagens/sevenup.png</file>
+        <file>imagens/groselha_7up.jpg</file>
+        <file>imagens/cerveja.png</file>
+        <file>imagens/cerveja.jpg</file>
+        <file>imagens/foto.png</file>
+        <file>imagens/copo.png</file>
     </qresource>
 </RCC>
