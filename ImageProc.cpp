@@ -2317,7 +2317,7 @@ Mat apply_mask(Mat src, Mat mask) {
 Mat corrigir_distorcao(Mat src, Mat color) {
 
     if (src.empty() || color.empty()) {
-        cout << "There is no image to correct distortion!" << endl;
+        cout << "There is no image!" << endl;
         return src;
     }
 
@@ -2325,41 +2325,28 @@ Mat corrigir_distorcao(Mat src, Mat color) {
     vector< Point2f > corners;
 
     Canny(src, edges, 0, 255, 3);
-    imshow("edges",edges);
-    goodFeaturesToTrack(edges, corners, 4,0.5,20);
+    GaussianBlur(edges, edges, Size(7, 7), 0);
+    //imshow("edges",edges);
+    goodFeaturesToTrack(edges, corners, 4, 0.2, 400);
+
     Point Q1;
     Point Q2;
     Point Q3;
     Point Q4;
 
-
-
     uint canto = 0;
     uint lado = 0;
-
-    /*
-    Q1.x = 122;
-    Q1.y = 81;
-
-    Q2.x = 349;
-    Q2.y = 56;
-
-    Q3.x = 348;
-    Q3.y = 387;
-
-    Q4.x = 122;
-    Q4.y = 365;
-
-    */
+    cout << "     \n" << endl;
     for (uint i = 0; i < 4; i++)
     {
-        cout << "X: " << corners[i].x << "    Y: " << corners[i].y << endl;
+        cout <<"Canto x:" <<corners[i].x << "    y:"<< corners[i].y << endl;
 
-        if (abs(corners[i].x - corners[i].y) < 200){
-            if (canto == 0){
+        if (abs(corners[i].x - corners[i].y) < 200) {
+            if (canto == 0) {
                 Q1 = corners[i];
                 canto = 1;
-            }else{
+            }
+            else {
                 if (Q1.x > corners[i].x) {
                     Q3 = Q1;
                     Q1 = corners[i];
@@ -2367,7 +2354,6 @@ Mat corrigir_distorcao(Mat src, Mat color) {
                 else {
                     Q3 = corners[i];
                 }
-
             }
 
         }
@@ -2378,7 +2364,7 @@ Mat corrigir_distorcao(Mat src, Mat color) {
                 lado = 1;
             }
             else {
-                if ( Q2.x > Q2.y)  {
+                if (Q2.x > Q2.y) {
                     Q4 = corners[i];
                 }
                 else {
@@ -2389,11 +2375,7 @@ Mat corrigir_distorcao(Mat src, Mat color) {
 
         }
     }
-    cout << "exit" << endl;
-    cout << "X: " << Q1.x << "    Y: " << Q1.y << endl;
-    cout << "X: " << Q2.x << "    Y: " << Q2.y << endl;
-    cout << "X: " << Q3.x << "    Y: " << Q3.y << endl;
-    cout << "X: " << Q4.x << "    Y: " << Q4.y << endl;
+
 
     // compute the size of the card by keeping aspect ratio.
     double ratio = 0.86;
@@ -2401,8 +2383,8 @@ Mat corrigir_distorcao(Mat src, Mat color) {
     double cardW = ratio * cardH;
     Rect R(Q1.x, Q1.y, cardW, cardH);
 
-    Point R1 = Point2f(0,0);
-    Point R2 = Point2f( R.width, 0);
+    Point R1 = Point2f(0, 0);
+    Point R2 = Point2f(R.width, 0);
     Point R3 = Point2f(Point2f(R.width, R.height));
     Point R4 = Point2f(Point2f(0, R.height));
 
@@ -2422,7 +2404,7 @@ Mat corrigir_distorcao(Mat src, Mat color) {
 
     Mat transmtx = getPerspectiveTransform(quad_pts, squre_pts);
     int offsetSize = 150;
-    Mat transformed = Mat::zeros(R.height,R.width, CV_8UC3);
+    Mat transformed = Mat::zeros(R.height, R.width, CV_8UC3);
     warpPerspective(color, transformed, transmtx, transformed.size());
 
     return transformed;

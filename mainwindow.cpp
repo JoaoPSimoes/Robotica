@@ -34,7 +34,8 @@ MainWindow::MainWindow(QWidget *parent):
     Num_Doses_Cerveja = 0;
     Num_Doses_Groselha = 0;
     Num_Doses_7UP = 0;
-
+    ui->video_label->setScaledContents(true);
+    //ui->snapshot->setScaledContents(true);
     mOpenCV_VideoCapture=new MyVideoCapture(this);
     connect(mOpenCV_VideoCapture, &MyVideoCapture::newPixmpapCaptured,this,[&]()
     {
@@ -175,6 +176,9 @@ void MainWindow::on_button_menu_clicked()
     Num_Doses_7UP = 0;
     Num_Doses_Cerveja = 0;
     Num_Doses_Groselha = 0;
+    ui->label_5->setText("Copos identificados:");
+    coordenadas_copo_x = 0;
+    coordenadas_copo_y = 0;
     mOpenCV_VideoCapture->terminate();
     ui->snapshot->setStyleSheet("background-color: rgb(0, 0, 0);");
 
@@ -250,7 +254,8 @@ qApp->processEvents();
         ui->label_preparar->setText("Bebida Indisponível!");
         break;
     case 5:{
-
+        ui->label_preparar->setText("A preparar bebida...");
+        qApp->processEvents();
         QTcpSocket socketClient;
         socketClient.connectToHost("192.168.10.254", 7000);
         if (!socketClient.waitForConnected(TIMEOUT_COMMS)) {
@@ -272,10 +277,14 @@ qApp->processEvents();
             cout<<"Erro no envio"<<endl;
             return;}
         socketClient.disconnectFromHost();
+
         break;
-        ui->label_preparar->setText("A preparar bebida...");
     }
     case 6: {
+
+        ui->label_preparar->setText("A preparar bebida...");
+        qApp->processEvents();
+
         QTcpSocket socketClient;
         socketClient.connectToHost("192.168.10.254", 7000);
         if (!socketClient.waitForConnected(TIMEOUT_COMMS)) {
@@ -289,10 +298,9 @@ qApp->processEvents();
             cout<<"Erro no envio"<<endl;
             return;}
         socketClient.disconnectFromHost();
-        ui->label_preparar->setText("A preparar bebida...");
-    }
-        break;
 
+        break;
+    }
     }
     id_bebida = 0;
 }
@@ -373,12 +381,15 @@ void MainWindow::on_camera_ON_clicked()
 
 void MainWindow::on_take_snapshot_clicked()
 {
-    int h_upper_mesa = 74;
-    int h_lower_mesa = 62;
+    ui->msg_arrumar->setText("A segmentar a mesa...");
+    qApp->processEvents();
+
+    int h_upper_mesa = 79;
+    int h_lower_mesa = 56;
     int s_upper_mesa = 255;
-    int s_lower_mesa = 50;
+    int s_lower_mesa = 40;
     int v_upper_mesa = 255;
-    int v_lower_mesa = 50;
+    int v_lower_mesa = 40;
 
     int h_upper_copo = 255;
     int h_lower_copo = 0;
@@ -388,20 +399,34 @@ void MainWindow::on_take_snapshot_clicked()
     int v_lower_copo = 20;
 
     Mat captured = mOpenCV_VideoCapture->frame();
+    //Mat captured = imread("D://cop_2.jpg");
     Mat blur;
-    GaussianBlur(captured, blur, Size(3, 3), 0);
+    GaussianBlur(captured, blur, Size(5, 5), 0);
     Mat segm_mesa = VCPI_Segmenta_Cor(blur,h_lower_mesa,h_upper_mesa,s_lower_mesa,s_upper_mesa,v_lower_mesa,v_upper_mesa);	//efetuar a binarização da imagem segundo um dado threshold
     Mat binary = vcpi_gray_to_binary(vcpi_rgb_to_gray(segm_mesa), 1, 255);
     binary = vcpi_binary_open(binary, 5, Oito, 5, Oito);
+
     Mat temp = vcpi_get_max_blob_area(vcpi_binary_blob_improved_labelling(binary));     //filtrar blobs com tamanho inferior a um determinado numero de pixeis
     temp = vcpi_gray_negative(vcpi_get_max_blob_area(vcpi_binary_blob_improved_labelling(vcpi_gray_negative(temp))));
+    temp = vcpi_binary_close(temp, 14, Oito, 16, Quatro);
     segm_mesa = apply_mask(captured, temp);
+
+    QImage mesa( segm_mesa.data,segm_mesa.cols, segm_mesa.rows,static_cast<int>(segm_mesa.step),QImage::Format_BGR888 );
+    ui->snapshot->setPixmap(QPixmap::fromImage(mesa));
+    ui->msg_arrumar->setText("A segmentar o copo...");
+    qApp->processEvents();
+
     Mat direito = corrigir_distorcao(temp,captured);
     Mat segm_copo = VCPI_Segmenta_Cor(direito, h_lower_copo, h_upper_copo, s_lower_copo, s_upper_copo, v_lower_copo, v_upper_copo);	//efetuar a binarização da imagem segundo um dado threshold
     Mat binary_copo = vcpi_gray_to_binary(vcpi_rgb_to_gray(segm_copo), 1, 255);
     binary_copo = vcpi_binary_close(binary_copo, 5, Oito, 7, Oito);
-
     segm_copo = apply_mask(direito, binary_copo);
+
+    QImage copo( segm_copo.data,segm_copo.cols, segm_copo.rows,static_cast<int>(segm_copo.step),QImage::Format_BGR888 );
+    ui->snapshot->setPixmap(QPixmap::fromImage(copo));
+    ui->msg_arrumar->setText("A encontrar coordenadas...");
+    qApp->processEvents();
+
     Mat labels = vcpi_binary_blob_improved_labelling(binary_copo);
     binary_copo = vcpi_filter_blob_area(labels, 200);
     labels = vcpi_binary_blob_improved_labelling(binary_copo);
@@ -415,25 +440,32 @@ void MainWindow::on_take_snapshot_clicked()
     coordenadas cent_copo = vcpi_blob_centroid(find_replace_value(labels, 1, 255));
     //cout << "Img size pixels X: " << direito.cols << "  Y: " << direito.rows<<endl;
     //cout << "Pixel pos copo X: " << cent_copo.x << "    Y: " << cent_copo.y << "  Area: "<< cent_copo.area <<endl;
-    float pos_copo_y =(float) (500.0f / (float)direito.rows)*cent_copo.y;
-    float pos_copo_x =(float) (430.0f / (float)direito.cols)*cent_copo.x;
+    float pos_copo_y =(float) (416.0f / (float)direito.rows)*cent_copo.y;
+    float pos_copo_x =(float) (346.0f / (float)direito.cols)*cent_copo.x;
+
+    //warp correction
+    float half_rows = (float)direito.rows/2.0f;
+    float correctionFactor = ((float)cent_copo.y-half_rows)/((float) half_rows);
+    pos_copo_y -= 32.0f*correctionFactor;
     cout << "Millimetros copo X: " << pos_copo_x << "  Y: " << pos_copo_y << endl;
 
-    coordenadas_copo_x = pos_copo_x;
-    coordenadas_copo_y = pos_copo_y;
+    //trocar as coordenadas após a conversão
+    coordenadas_copo_x = pos_copo_y;
+    coordenadas_copo_y = pos_copo_x;
 
     Mat out = find_apply_created(direito, find_create_with(vcpi_draw_circle_centroid(find_replace_value(labels, 1, 255)), 255, 40, 40, 255));
+
     QImage image( out.data,out.cols, out.rows,static_cast<int>(out.step),QImage::Format_BGR888 );
-
-
     ui->snapshot->setPixmap(QPixmap::fromImage(image));
+
     QString text = "Copos Identificados: ";
     text.append(QString::number(1));
     text.append("\nCoordenadas:\n\tX:");
-    text.append(QString::number(pos_copo_x,'f',3));
+    text.append(QString::number(pos_copo_x,'f',2));
     text.append("\n\tY:");
-    text.append(QString::number(pos_copo_y,'f',3));
+    text.append(QString::number(pos_copo_y,'f',2));
     ui->label_5->setText(text);
+    ui->msg_arrumar->setText("Análise visual completa");
 
 }
 
@@ -445,14 +477,13 @@ void MainWindow::on_lavar_copo_clicked()
     }
 
     QByteArray msg = "{X ";
-    //QByteArray x = QByteArray::number(coordenadas_copo_x,'f',3);
-    QByteArray x = QByteArray::number(20,'f',2);
-    QByteArray y = QByteArray::number(20,'f',2);
-    //QByteArray y = QByteArray::number(coordenadas_copo_y,'f',3);
+    QByteArray x = QByteArray::number(coordenadas_copo_x,'f',2);
+    QByteArray y = QByteArray::number(coordenadas_copo_y,'f',2);
+
     msg.append(x);
     msg.append(",Y ");
     msg.append(y);
-    msg.append(",Z 10.0,A -88.86,B 2.23,C 1.83,S 6,T18,E1 0.0,E2 0.0,E3 0.0,E4 0.0,E5 0.0,E6 0.0}");
+    msg.append(",Z 0.0,A 93.23,B 1.4,C 1.83}");
 
     ui->msg_arrumar->setText("A arrumar copo...");
     qApp->processEvents();
