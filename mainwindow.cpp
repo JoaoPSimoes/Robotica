@@ -15,6 +15,7 @@
 #include "myvideocapture.h"
 #include "ImageProc.h"
 
+
 using namespace std;
 using namespace cv;
 
