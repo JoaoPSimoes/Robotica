@@ -428,9 +428,9 @@ void MainWindow::on_take_snapshot_clicked()
     ui->msg_arrumar->setText("A encontrar coordenadas...");
     qApp->processEvents();
 
+    binary_copo = vcpi_get_max_blob_area(vcpi_binary_blob_improved_labelling(binary_copo));
+    //binary_copo = vcpi_filter_blob_area(labels, 200);
     Mat labels = vcpi_binary_blob_improved_labelling(binary_copo);
-    binary_copo = vcpi_filter_blob_area(labels, 200);
-    labels = vcpi_binary_blob_improved_labelling(binary_copo);
 
     uint max_labels = 0;
 
