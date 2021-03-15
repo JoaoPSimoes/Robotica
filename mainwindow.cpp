@@ -36,7 +36,6 @@ MainWindow::MainWindow(QWidget *parent):
     Num_Doses_Groselha = 0;
     Num_Doses_7UP = 0;
     ui->video_label->setScaledContents(true);
-    //ui->snapshot->setScaledContents(true);
     mOpenCV_VideoCapture=new MyVideoCapture(this);
     connect(mOpenCV_VideoCapture, &MyVideoCapture::newPixmpapCaptured,this,[&]()
     {
@@ -163,6 +162,7 @@ void MainWindow::on_button_clean_clicked()
     ui->stackedWidget->setCurrentIndex(3);
 }
 
+//button to enter menu
 void MainWindow::on_button_menu_clicked()
 {
 
@@ -185,6 +185,7 @@ void MainWindow::on_button_menu_clicked()
 
 
 }
+
 
 void MainWindow::on_cuba_button_clicked()
 {   
@@ -233,6 +234,7 @@ void MainWindow::on_cerveja_button_clicked()
     ui->label_Ingredientes->setText("-Cerveja");
 }
 
+//button to prepare drink recipe
 void MainWindow::on_button_ok_clicked()
 {
 ui->label_preparar->setText("");
@@ -306,6 +308,7 @@ qApp->processEvents();
     id_bebida = 0;
 }
 
+//button to cancel drink recipe
 void MainWindow::on_button_limpar_clicked()
 {
     Receita="";
@@ -316,6 +319,7 @@ void MainWindow::on_button_limpar_clicked()
     Num_Doses_Groselha = 0;
 }
 
+//button to prepare drink recipe
 void MainWindow::on_button_bebida_ok_clicked()
 {
     if(Num_Doses_Groselha==0 && Num_Doses_7UP==0 && Num_Doses_Cerveja==0){
@@ -380,11 +384,14 @@ void MainWindow::on_camera_ON_clicked()
     }
 }
 
+//function to take a snapshot and process the image
 void MainWindow::on_take_snapshot_clicked()
 {
     ui->msg_arrumar->setText("A segmentar a mesa...");
     qApp->processEvents();
 
+	//thresholding values
+	
     int h_upper_mesa = 79;
     int h_lower_mesa = 56;
     int s_upper_mesa = 255;
@@ -399,37 +406,43 @@ void MainWindow::on_take_snapshot_clicked()
     int v_upper_copo = 168;
     int v_lower_copo = 20;
 
+	//image aquisition
     Mat captured = mOpenCV_VideoCapture->frame();
     //Mat captured = imread("D://cop_2.jpg");
+	
+	//image binarization
     Mat blur;
     GaussianBlur(captured, blur, Size(5, 5), 0);
-    Mat segm_mesa = VCPI_Segmenta_Cor(blur,h_lower_mesa,h_upper_mesa,s_lower_mesa,s_upper_mesa,v_lower_mesa,v_upper_mesa);	//efetuar a binarização da imagem segundo um dado threshold
+    Mat segm_mesa = VCPI_Segmenta_Cor(blur,h_lower_mesa,h_upper_mesa,s_lower_mesa,s_upper_mesa,v_lower_mesa,v_upper_mesa);
     Mat binary = vcpi_gray_to_binary(vcpi_rgb_to_gray(segm_mesa), 1, 255);
     binary = vcpi_binary_open(binary, 5, Oito, 5, Oito);
 
-    Mat temp = vcpi_get_max_blob_area(vcpi_binary_blob_improved_labelling(binary));     //filtrar blobs com tamanho inferior a um determinado numero de pixeis
+	//select biggest binary blob
+    Mat temp = vcpi_get_max_blob_area(vcpi_binary_blob_improved_labelling(binary));
     temp = vcpi_gray_negative(vcpi_get_max_blob_area(vcpi_binary_blob_improved_labelling(vcpi_gray_negative(temp))));
     temp = vcpi_binary_close(temp, 14, Oito, 16, Quatro);
     segm_mesa = apply_mask(captured, temp);
 
+	//display the result
     QImage mesa( segm_mesa.data,segm_mesa.cols, segm_mesa.rows,static_cast<int>(segm_mesa.step),QImage::Format_BGR888 );
     ui->snapshot->setPixmap(QPixmap::fromImage(mesa));
     ui->msg_arrumar->setText("A segmentar o copo...");
     qApp->processEvents();
 
+	//warp correction and cup segmentation
     Mat direito = corrigir_distorcao(temp,captured);
     Mat segm_copo = VCPI_Segmenta_Cor(direito, h_lower_copo, h_upper_copo, s_lower_copo, s_upper_copo, v_lower_copo, v_upper_copo);	//efetuar a binarização da imagem segundo um dado threshold
     Mat binary_copo = vcpi_gray_to_binary(vcpi_rgb_to_gray(segm_copo), 1, 255);
     binary_copo = vcpi_binary_close(binary_copo, 5, Oito, 7, Oito);
     segm_copo = apply_mask(direito, binary_copo);
 
+	//display result
     QImage copo( segm_copo.data,segm_copo.cols, segm_copo.rows,static_cast<int>(segm_copo.step),QImage::Format_BGR888 );
     ui->snapshot->setPixmap(QPixmap::fromImage(copo));
     ui->msg_arrumar->setText("A encontrar coordenadas...");
     qApp->processEvents();
 
     binary_copo = vcpi_get_max_blob_area(vcpi_binary_blob_improved_labelling(binary_copo));
-    //binary_copo = vcpi_filter_blob_area(labels, 200);
     Mat labels = vcpi_binary_blob_improved_labelling(binary_copo);
 
     uint max_labels = 0;
@@ -438,19 +451,20 @@ void MainWindow::on_take_snapshot_clicked()
         max_labels = labels.data[i] > max_labels ? labels.data[i] : max_labels;
     }
 
+	//get cup coordinates
     coordenadas cent_copo = vcpi_blob_centroid(find_replace_value(labels, 1, 255));
     //cout << "Img size pixels X: " << direito.cols << "  Y: " << direito.rows<<endl;
     //cout << "Pixel pos copo X: " << cent_copo.x << "    Y: " << cent_copo.y << "  Area: "<< cent_copo.area <<endl;
     float pos_copo_y =(float) (416.0f / (float)direito.rows)*cent_copo.y;
     float pos_copo_x =(float) (346.0f / (float)direito.cols)*cent_copo.x;
 
-    //warp correction
+    //equation to correct linear distortion
     float half_rows = (float)direito.rows/2.0f;
     float correctionFactor = ((float)cent_copo.y-half_rows)/((float) half_rows);
     pos_copo_y -= 32.0f*correctionFactor;
     cout << "Millimetros copo X: " << pos_copo_x << "  Y: " << pos_copo_y << endl;
 
-    //trocar as coordenadas após a conversão
+    //switch coordinates from x to y
     coordenadas_copo_x = pos_copo_y;
     coordenadas_copo_y = pos_copo_x;
 
@@ -470,6 +484,7 @@ void MainWindow::on_take_snapshot_clicked()
 
 }
 
+//function to send the cup coordinates to the robot
 void MainWindow::on_lavar_copo_clicked()
 {
     if(coordenadas_copo_x==0 && coordenadas_copo_y==0){
